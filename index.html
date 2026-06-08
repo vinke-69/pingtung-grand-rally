@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#17251e">
+  <title>屏東・南國公路巡遊</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="回到首頁">
+        <span class="brand-mark">
+          <svg viewBox="0 0 44 44" aria-hidden="true">
+            <path d="M8 29 20 9l5 9 4-6 8 17H8Z" fill="currentColor"/>
+            <path d="M6 33c8-3 16-3 24 0 4 1 7 1 10 0" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span>屏東・南國公路巡遊</span>
+      </a>
+      <div class="top-actions">
+        <span class="sound-status"><span class="pulse-dot"></span> 遊戲音效</span>
+        <button class="icon-button" id="soundToggle" aria-label="切換音效" title="切換音效">
+          <svg class="sound-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.5 3a4.5 4.5 0 0 0-2-3.74v7.48a4.5 4.5 0 0 0 2-3.74Zm-2-7.97v2.06a7 7 0 0 1 0 11.82v2.06a9 9 0 0 0 0-15.94Z"/></svg>
+          <svg class="sound-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4Zm12.59 3L19 9.59 20.41 11 18 13.41 20.41 15 19 16.41 16.59 14 14.17 16.41 12.76 15l2.41-2.41L12.76 10l1.41-1.41L16.59 11 19 8.59 20.41 10l-3.82 2Z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow"><span></span> PINGTUNG GRAND RALLY</div>
+      <h1>穿越屏東山海<br><em>一路向南而行</em></h1>
+      <p>駕駛越野車從屏科大出發，沿著南國公路收集金幣、跨越障礙，<br class="desktop-only">走訪東港、大鵬灣、恆春、墾丁與鵝鑾鼻等代表性景點。</p>
+    </section>
+
+    <section class="game-layout">
+      <div class="game-card">
+        <div class="game-toolbar">
+          <div class="level-chip">
+            <span class="level-number" id="levelNumber">01</span>
+            <span><small>目前關卡</small><strong id="levelName">椰林啟程</strong></span>
+          </div>
+          <div class="stat-group">
+            <div class="stat">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 3 7v10l9 5 9-5V7l-9-5Zm0 3.2L17.5 8 12 10.8 6.5 8 12 5.2ZM5 10l6 3v5.8l-6-3V10Zm8 8.8V13l6-3v5.8l-6 3Z"/></svg>
+              <span><small>里程</small><strong id="distance">0.00 <i>km</i></strong></span>
+            </div>
+            <div class="stat">
+              <svg class="coin-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M14.8 8.5c-.6-.7-1.5-1-2.8-1-1.5 0-2.5.7-2.5 1.7 0 2.7 5.5 1.2 5.5 4.1 0 1.1-1.1 2-2.8 2-1.4 0-2.5-.5-3.2-1.3M12 5.5v13"/></svg>
+              <span><small>金幣</small><strong id="coins">0</strong></span>
+            </div>
+            <div class="stat life-stat">
+              <svg class="heart-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S4 16 4 9.7C4 6.4 7.8 4.6 10.2 7L12 8.8 13.8 7C16.2 4.6 20 6.4 20 9.7c0 6.3-8 10.8-8 10.8Z"/></svg>
+              <span><small>生命</small><strong id="lives">∞ 無限</strong></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="canvas-wrap">
+          <canvas id="gameCanvas" width="1280" height="640" aria-label="屏科大校園賽車遊戲"></canvas>
+          <div class="powerup-timer" id="powerupTimer" hidden>
+            <span class="powerup-timer-icon">⚡</span>
+            <span>渦輪剩餘</span>
+            <strong id="powerupTime">1.5 秒</strong>
+          </div>
+          <div class="start-overlay" id="startOverlay">
+            <div class="overlay-panel">
+              <span class="mini-label">READY TO RIDE?</span>
+              <h2>準備好出發了嗎？</h2>
+              <p>完成 20 公里屏東巡遊，沿途收集金幣並安全抵達鵝鑾鼻終點旗。</p>
+              <button class="primary-button" id="startButton">
+                <span>開始遊戲</span>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="message-overlay" id="messageOverlay" hidden>
+            <div class="overlay-panel">
+              <span class="mini-label" id="messageLabel">RALLY COMPLETE</span>
+              <h2 id="messageTitle">順利抵達終點！</h2>
+              <p id="messageText">你完成了校園挑戰。</p>
+              <button class="primary-button" id="restartButton">再跑一次</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="progress-section">
+          <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+          <div class="progress-labels">
+            <span>屏科大</span><span>東港</span><span>大鵬灣</span><span>海生館</span><span>恆春</span><span>鵝鑾鼻</span>
+          </div>
+        </div>
+
+        <div class="controls">
+          <div class="control-set">
+            <span class="control-title">移動</span>
+            <button class="key-button" data-control="left" aria-label="倒退">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg>
+            </button>
+            <button class="key-button" data-control="right" aria-label="前進">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg>
+            </button>
+            <span class="control-hint">前進 / 倒退</span>
+          </div>
+          <div class="control-divider"></div>
+          <div class="control-set jump-set">
+            <span class="control-title">動作</span>
+            <button class="space-button" data-control="jump"><span>SPACE</span></button>
+            <span class="control-hint">跳躍</span>
+          </div>
+          <div class="mobile-controls-label">也可以使用畫面按鈕操作</div>
+        </div>
+      </div>
+
+      <aside class="side-panel">
+        <div class="side-card route-card">
+          <span class="card-kicker">PINGTUNG GRAND TOUR</span>
+          <h3>屏東觀光巡遊</h3>
+          <div class="route-list">
+            <div class="route-item active" data-level="0"><span class="route-dot">1</span><div><strong>屏科大椰林</strong><small>0 — 2 km</small></div></div>
+            <div class="route-item" data-level="1"><span class="route-dot">2</span><div><strong>萬巒客庄</strong><small>2 — 4 km</small></div></div>
+            <div class="route-item" data-level="2"><span class="route-dot">3</span><div><strong>東港漁港</strong><small>4 — 6 km</small></div></div>
+            <div class="route-item" data-level="3"><span class="route-dot">4</span><div><strong>大鵬灣</strong><small>6 — 8 km</small></div></div>
+            <div class="route-item" data-level="4"><span class="route-dot">5</span><div><strong>枋寮海岸</strong><small>8 — 10 km</small></div></div>
+            <div class="route-item" data-level="5"><span class="route-dot">6</span><div><strong>車城福安宮</strong><small>10 — 12 km</small></div></div>
+            <div class="route-item" data-level="6"><span class="route-dot">7</span><div><strong>海生館</strong><small>12 — 14 km</small></div></div>
+            <div class="route-item" data-level="7"><span class="route-dot">8</span><div><strong>恆春古城</strong><small>14 — 16 km</small></div></div>
+            <div class="route-item" data-level="8"><span class="route-dot">9</span><div><strong>墾丁海岸</strong><small>16 — 18 km</small></div></div>
+            <div class="route-item" data-level="9"><span class="route-dot">10</span><div><strong>鵝鑾鼻燈塔</strong><small>18 — 20 km</small></div></div>
+          </div>
+        </div>
+        <div class="side-card tip-card">
+          <div class="tip-icon">!</div>
+          <div><span class="card-kicker">DRIVING TIP</span><p>藍色飛行翼可前進 0.5 公里；紅色渦輪可在 1.5 秒內加速並撞毀障礙物。存檔點附近是安全區。</p></div>
+        </div>
+        <div class="campus-note">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.1 7 13 7 13s7-7.9 7-13c0-3.9-3.1-7-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>
+          <span>以屏東縣代表性景點與南國風景為靈感創作</span>
+        </div>
+      </aside>
+    </section>
+
+    <footer>
+      <span>© 2026 PINGTUNG GRAND RALLY</span>
+      <span>慢慢開，風景才看得清楚。</span>
+    </footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
